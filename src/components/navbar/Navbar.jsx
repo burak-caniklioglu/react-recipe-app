@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Nav, Logo, Hamburger, Menu, MenuLink } from './style'
+import { Nav, Logo, Hamburger, Menu, MenuLink } from '../Styled_Components'
 
 
 function Navbar() {
