@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Main from "../components/recipe/Main";
 import Login from "../pages/login";
-import About from "../components/about/About";
+import About from "../pages/about";
 import RecipeCard from "../components/recipe/RecipeCard";
 
 function AppRouter() {

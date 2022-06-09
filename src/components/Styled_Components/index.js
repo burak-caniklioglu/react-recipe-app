@@ -104,13 +104,15 @@ font-family: Girassol, sans-serif;
 
 
 export const Container = styled.div`
-background-image: url(https://prod.static9.net.au/_/media/Network/Images/2017/07/12/11/08/170712coach_natural.jpg);
+
+background: ${props => props.theme.background};;
 background-repeat: no-repeat;
 min-height: calc(100vh - 75px);
 background-size: cover;
 background-position: center center;
 display: flex;
 -webkit-box-pack: center;
+flex-direction: ${props => props.theme.direction};
 justify-content: center;
 -webkit-box-align: center;
 align-items: center;
@@ -140,8 +142,12 @@ flex-direction: column;
 `
 
 export const Image = styled.img`
-    width: 150px;
+    width: ${props => props.theme.width};
     margin: 1rem;
+    @media (max-width:912px){
+        width: 80%;
+        text-align: center;
+    }
 `
 
 export const Header = styled.h1`
@@ -176,4 +182,33 @@ font-size: 2rem;
     border: none;
     cursor: pointer;
     margin: 1rem;
+`
+
+
+export const AboutPerson = styled.div`
+text-align: center;
+font-size: 2vh;
+span{
+    color: white;
+    font-family: Girassol, sans-serif;
+    font-size: 6vh;
+}
+`
+
+export const AboutInfo = styled.div`
+    text-align: right;
+    margin: 0px 10px;
+    width: 30vw;
+    border: 1px solid white;
+    padding: 25px;
+    border-radius: 5px; 
+    margin-bottom: 1rem;
+    a{
+        color: white;
+    }
+
+    @media (max-width:768px){
+        width: 80%;
+        font-size: 2vh;
+    }
 `
