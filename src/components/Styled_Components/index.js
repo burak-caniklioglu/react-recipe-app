@@ -168,7 +168,7 @@ export const Input = styled.input`
     border-radius: 5px;
     font-family: Girassol, sans-serif;
     background-color: rgba(0, 0, 0, 0.6);
-    border: none;
+    border: ${props => props.border || 'none'};
     color: white;
     margin: 1rem;
     text-indent: 20px;

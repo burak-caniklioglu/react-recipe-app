@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import './login.css'
 import {
   Container,
   Section,
@@ -42,13 +43,13 @@ function Login() {
         >
           {({ errors, touched, values, handleChange, handleSubmit }) => (
               <Form>
-              <Input type="text" name = 'userName' placeholder="username" required onChange={handleChange} />
+              <Input border={errors.userName&& touched.userName && '1px solid red'} type="text" name = 'userName' placeholder="username" required onChange={handleChange} />
               {errors.userName && touched.userName ? (
-             <div>{errors.userName}</div>
+             <div className='formError'>{errors.userName}</div>
            ) : null}
-              <Input type="password" name = 'password' placeholder="password" required onChange={handleChange}/>
+              <Input border={errors.password && touched.password && '1px solid red'} type="password" name = 'password' placeholder="password" required onChange={handleChange}/>
               {errors.password && touched.password ? (
-             <div>{errors.password}</div>
+             <div className='formError'>{errors.password}</div>
            ) : null}
               <Button type="submit" onClick={handleSubmit}>Login</Button>
             </Form>
