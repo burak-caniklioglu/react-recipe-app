@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import styled from "styled-components";
 import ReactLogo from "../../assets/home.svg";
 import axios from "axios";
 import {Link} from 'react-router-dom'
+import { useApp } from "../../contexts/provider";
 
 
 function Main() {
+  const {loading, setLoading} = useApp()
   const [recipes, setRecipes] = useState([]);
   const [query, setQuery] = useState("");
-  const [loading, setLoading] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const handleChange = (e) => {
     setQuery(e.target.value);

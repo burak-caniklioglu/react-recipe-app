@@ -4,15 +4,17 @@ import Main from "../components/recipe/Main";
 import Login from "../pages/login";
 import About from "../pages/about";
 import RecipeCard from "../components/recipe/RecipeCard";
+import PrivateRouter from "./PrivateRouter";
 
 function AppRouter() {
   return (
     <Routes>
-      <Route exact path="/" element={<Main />} />
       <Route path="/login" element={<Login />} />
       <Route path="/about" element={<About />} />
-      <Route path="/details" element={<RecipeCard />} />
-      
+      <Route element={<PrivateRouter />}>
+        <Route path="/details" element={<RecipeCard />} />
+        <Route exact path="/" element={<Main />} />
+      </Route>
     </Routes>
   );
 }
