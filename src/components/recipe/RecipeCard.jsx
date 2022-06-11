@@ -35,11 +35,19 @@ const RecipeSection = styled.div`
   justify-content: space-around;
   width: 70%;
   border-radius: 3px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: justify;
+    margin-top: 20px;
+  }
 `;
 
 const RecipeList = styled.ul`
   list-style: none;
   line-height: 1.5;
+  @media (max-width: 768px) {
+    margin-right: 10%;
+  }
   `;
 
   const ButtonBack = styled.button`
