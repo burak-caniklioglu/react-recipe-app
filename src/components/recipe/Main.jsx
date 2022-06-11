@@ -14,22 +14,28 @@ function Main() {
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
-  const ApplicationID = "8b467080";
-  const ApplicationKey = "dc61cfb7591756544d209d88f1cc9b20";
 
-  const AllURL = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${ApplicationID}&app_key=${ApplicationKey}&mealType=${mealType}`;
+
+  const AllURL = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${process.env.REACT_APP_API_KEY_ID}&app_key=${process.env.REACT_APP_API_KEY}&mealType=${mealType}`;
 
   // const SpesificURL = `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=${ApplicationID}&app_key=${ApplicationKey}`;
 
   const handleSubmit = async (e) => {
-    setLoading(true);
-    e.preventDefault();
-
-    setIsActive(true);
-    const res = await axios.get(AllURL);
-    setRecipes(res.data.hits);
-
-    setLoading(false);
+    try {
+      setLoading(true);
+      e.preventDefault();
+  
+      setIsActive(true);
+      const res = await axios.get(AllURL);
+      setRecipes(res.data.hits);
+  
+      setLoading(false);
+    } catch (error) {
+      console.log(error.response);
+    } finally {
+      setLoading(false);
+    }
+     
   };
 
   return (
