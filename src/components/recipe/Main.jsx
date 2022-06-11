@@ -2,22 +2,22 @@ import React, {  useState } from "react";
 import styled from "styled-components";
 import ReactLogo from "../../assets/home.svg";
 import axios from "axios";
-import {Link} from 'react-router-dom'
 import { useApp } from "../../contexts/provider";
 
 
 function Main() {
-  const {loading, setLoading} = useApp()
+  const {loading, setLoading, moreClick} = useApp()
   const [recipes, setRecipes] = useState([]);
   const [query, setQuery] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [mealType, setMealType] = useState("Breakfast")
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
   const ApplicationID = "8b467080";
   const ApplicationKey = "dc61cfb7591756544d209d88f1cc9b20";
 
-  const AllURL = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${ApplicationID}&app_key=${ApplicationKey}`;
+  const AllURL = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${ApplicationID}&app_key=${ApplicationKey}&mealType=${mealType}`;
 
   // const SpesificURL = `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=${ApplicationID}&app_key=${ApplicationKey}`;
 
@@ -49,7 +49,7 @@ function Main() {
             value={query}
           />
           <Button>Search</Button>
-          <Select>
+          <Select onChange={(e)=>setMealType( e.target.value)}>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
@@ -61,14 +61,13 @@ function Main() {
         {isActive ? (
           <RecipeContainer>
             {recipes.map((recipe, index) => {
-              console.log(recipe.recipe);
-              const { label, image, url, mealType, ingredients } =
+              const { label, images} =
                 recipe.recipe;
               return (
                 <RecipeArea key={index}>
                   <RecipeHeader>{label}</RecipeHeader>
-                  <RecipeImage src={image} alt={label}></RecipeImage>
-                  <DetailsButton to={`details`}>View More</DetailsButton>
+                  <RecipeImage src={images.THUMBNAIL.url} alt={label}></RecipeImage>
+                  <DetailsButton onClick={() => moreClick(recipe)}>View More</DetailsButton>
                 </RecipeArea>
               );
             })}
@@ -187,7 +186,7 @@ const RecipeImage = styled.img`
   border-radius: 10px;
 `;
 
-const DetailsButton = styled(Link)`
+const DetailsButton = styled.div`
   background-color: rgb(0, 173, 181);
   color: white;
   padding: 5px;

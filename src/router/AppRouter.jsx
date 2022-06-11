@@ -12,8 +12,8 @@ function AppRouter() {
       <Route path="/login" element={<Login />} />
       <Route path="/about" element={<About />} />
       <Route element={<PrivateRouter />}>
-        <Route path="/details" element={<RecipeCard />} />
         <Route exact path="/" element={<Main />} />
+        <Route path="/details" element={<RecipeCard />} />
       </Route>
     </Routes>
   );
