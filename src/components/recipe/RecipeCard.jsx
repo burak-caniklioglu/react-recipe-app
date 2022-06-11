@@ -8,27 +8,52 @@ function RecipeCard() {
   const navigate = useNavigate();
   const location = useLocation();
   const recipe = location.state.item;
-  console.log(recipe);
-  const {image} = recipe.recipe;
+  console.log(recipe.recipe);
+  const {image, ingredients} = recipe.recipe;
   return (
   
-  <Container>
+  <Container theme={{direction:'column'}}>
     <RecipeSection>
       <Image src={image}></Image>
-      
+      <RecipeList>
+        {ingredients.map((ingredient, index) => {
+          return (<li key={index}>{ingredient.text}</li>);
+        })}
+      </RecipeList>
     </RecipeSection>
+    <ButtonBack onClick={() => navigate("/")}>Back</ButtonBack>
   </Container>
   );
 }
 
 const RecipeSection = styled.div`
-  background-color: white;
+  background: rgb(225, 241, 221);
   display: flex;
   -webkit-box-align: center;
   align-items: center;
   -webkit-box-pack: center;
   justify-content: space-around;
   width: 70%;
+  border-radius: 3px;
 `;
+
+const RecipeList = styled.ul`
+  list-style: none;
+  line-height: 1.5;
+  `;
+
+  const ButtonBack = styled.button`
+  background-color: rgb(225, 241, 221);
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  margin: 20px;
+  padding: 10px;
+  cursor: pointer;
+  display:block;
+
+
+  `;
 
 export default RecipeCard;
